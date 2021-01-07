@@ -24,7 +24,7 @@ object ExoPlayerUtil {
     private lateinit var downloadManager: DownloadManager
 
     fun getDownloadManager(context: Context): DownloadManager {
-        if (!ExoPlayerUtil::downloadManager.isInitialized) {
+        if (!::downloadManager.isInitialized) {
             val executor = Executor(Runnable::run)
             downloadManager = DownloadManager(
                 context,
@@ -41,7 +41,7 @@ object ExoPlayerUtil {
     @Synchronized
     fun getDataSourceFactory(context: Context): DataSource.Factory {
         var context = context
-        if (!ExoPlayerUtil::dataSourceFactory.isInitialized) {
+        if (!::dataSourceFactory.isInitialized) {
             context = context.applicationContext
             dataSourceFactory = CacheDataSource.Factory()
                 .setCache(getDownloadCache(context))
@@ -53,7 +53,7 @@ object ExoPlayerUtil {
 
     @Synchronized
     private fun getHttDataSourceFactory(): HttpDataSource.Factory {
-        if (!ExoPlayerUtil::httDataSourceFactory.isInitialized) {
+        if (!::httDataSourceFactory.isInitialized) {
             httDataSourceFactory = DefaultHttpDataSourceFactory()
         }
         return httDataSourceFactory
@@ -61,7 +61,7 @@ object ExoPlayerUtil {
 
     @Synchronized
     private fun getDownloadCache(context: Context): Cache {
-        if (!ExoPlayerUtil::downloadCache.isInitialized) {
+        if (!::downloadCache.isInitialized) {
             downloadCache = SimpleCache(
                 context.cacheDir, LeastRecentlyUsedCacheEvictor(1024 * 1024 * 5),
                 getDatabaseProvide(context)
@@ -72,7 +72,7 @@ object ExoPlayerUtil {
 
     @Synchronized
     private fun getDatabaseProvide(context: Context): DatabaseProvider {
-        if (!ExoPlayerUtil::databaseProvider.isInitialized) {
+        if (!::databaseProvider.isInitialized) {
             databaseProvider = ExoDatabaseProvider(context)
         }
         return databaseProvider
