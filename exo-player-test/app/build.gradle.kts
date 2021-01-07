@@ -46,6 +46,7 @@ dependencies {
     // ExoPlayer
     implementation ("com.google.android.exoplayer:exoplayer-core:2.12.2")
     implementation ("com.google.android.exoplayer:exoplayer-dash:2.12.2")
+    implementation ("com.google.android.exoplayer:extension-workmanager:2.12.2")
     implementation ("com.google.android.exoplayer:exoplayer-ui:2.12.2")
 
     implementation("androidx.preference:preference-ktx:1.1.1")
